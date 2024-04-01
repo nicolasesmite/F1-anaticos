@@ -14,7 +14,7 @@ export function Carrousel({ races }) {
             return (
               <div
                 key={race.raceName}
-                className="flex w-3/4 pb-8 h-full items-center justify-center bg-gray-400 "
+                className="flex w-3/4 pb-8 h-full items-center justify-center text-red-500 text-lg "
               >
                 {race.raceName} Fecha {race.round}
               </div>
