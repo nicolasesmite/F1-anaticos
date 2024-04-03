@@ -7,7 +7,7 @@ function App() {
   const [yearClass, setYearClass] = useState();
   const [data, setData] = useState();
   const [racesArray, setRacesArray] = useState();
-  const [raceNumber, setRaceNumber] = useState();
+  const [raceData, setRaceData] = useState();
 
   useEffect(() => {
     async function fetching(url) {
@@ -26,21 +26,20 @@ function App() {
       setYearClass(year);
       const result = await fetching(url);
       setRacesArray(result.MRData.RaceTable.Races);
-
-      return result;
     }
 
     async function fetchRaceData(round) {
       const url =
         "http://ergast.com/api/f1/" +
         `${yearClass}` +
-        `${round}` +
-        " results.json";
+        `/${round}/` +
+        "results.json";
 
       const result = await fetching(url);
+      setRaceData(result.MRData.RaceTable.Races[0].Results);
     }
 
-    setData({ fetchByYear, yearClass, racesArray });
+    setData({ fetchByYear, yearClass, racesArray, fetchRaceData, raceData });
   }, [yearClass, racesArray]);
 
   return <AppContainer datos={data} />;

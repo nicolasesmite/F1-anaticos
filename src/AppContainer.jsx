@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Carrousel } from "./components/Carrousel";
 
 const AppContainer = ({ datos }) => {
-  const { yearClass, fetchByYear, racesArray } = { ...datos };
+  const { yearClass, fetchByYear, racesArray, fetchRaceData } = { ...datos };
 
   const [year, setYear] = useState([
     2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014,
     2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023,
   ]);
+
+  const carrouselData = { fetchRaceData, racesArray };
 
   return (
     <div className="min-h-full">
@@ -44,9 +46,16 @@ const AppContainer = ({ datos }) => {
             </div>
 
             <div className="w-5/6 mt-6 mr-2 border-double border-4 border-rose-600 ">
-              <Carrousel races={racesArray} />
+              <Carrousel data={carrouselData} />
+              <div className="text-red-500">
+                <ul role="list">
+                  <li>Posicion</li>
+                  <li>Piloto</li>
+                  <li>Nacionalidad</li>
+                  <li></li>
+                </ul>
+              </div>
             </div>
-            <div id="podio-container"></div>
           </div>
         </div>
       </main>
