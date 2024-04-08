@@ -8,6 +8,7 @@ function App() {
   const [data, setData] = useState();
   const [racesArray, setRacesArray] = useState();
   const [raceData, setRaceData] = useState();
+  const [circuitName, setCircuitName] = useState();
 
   useEffect(() => {
     async function fetching(url) {
@@ -37,10 +38,18 @@ function App() {
 
       const result = await fetching(url);
       setRaceData(result.MRData.RaceTable.Races[0].Results);
+      setCircuitName(result.MRData.RaceTable.Races[0].Circuit.circuitName);
     }
 
-    setData({ fetchByYear, yearClass, racesArray, fetchRaceData, raceData });
-  }, [yearClass, racesArray]);
+    setData({
+      fetchByYear,
+      yearClass,
+      racesArray,
+      fetchRaceData,
+      raceData,
+      circuitName,
+    });
+  }, [yearClass, racesArray, raceData]);
 
   return <AppContainer datos={data} />;
 }
