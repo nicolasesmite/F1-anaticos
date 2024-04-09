@@ -31,7 +31,7 @@ function App() {
 
     async function fetchRaceData(round) {
       const url =
-        "http://ergast.com/api/f1/" +
+        "https://ergast.com/api/f1/" +
         `${yearClass}` +
         `/${round}/` +
         "results.json";
